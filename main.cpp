@@ -5,20 +5,24 @@
 
 void bruteForceSearch(std::string *letters, std::vector<std::string> vec) {
     std::string combination;
+    int  wordsFound = 0;
     for (int i = 0; i < 12; i++) {
         for (int j = 0; j < 12; j++) {
             combination = letters[i] + letters[j];
             if (std::find(vec.begin(), vec.end(), combination) != vec.end()) {
+                wordsFound++;
                 std::cout << combination << std::endl;
             }
             for (int k = 0; k < 12; k++) {
                 combination = letters[i] + letters[j] + letters[k];
                 if (std::find(vec.begin(), vec.end(), combination) != vec.end()) {
+                    wordsFound++;
                     std::cout << combination << std::endl;
                 }
             }
         }
     }
+    std::cout << "Words found: " << wordsFound << std::endl;
 }
 
 int main() {
@@ -32,7 +36,7 @@ int main() {
     for (int i = 0; i < arrSize; i++) {
         std::cin >> letters[i];
     }
-    std::ifstream inputFile("engmix.txt");
+    std::ifstream inputFile("twl06.txt");
 
     if (!inputFile.is_open())
     {
@@ -49,5 +53,4 @@ int main() {
     inputFile.close(); // Close the file after reading
     
     bruteForceSearch(letters, dictionaryWords);
-
 }
