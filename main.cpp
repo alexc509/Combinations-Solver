@@ -8,16 +8,21 @@ void bruteForceSearch(std::string *letters, std::vector<std::string> vec) {
     int  wordsFound = 0;
     for (int i = 0; i < 12; i++) {
         for (int j = 0; j < 12; j++) {
-            combination = letters[i] + letters[j];
-            if (std::find(vec.begin(), vec.end(), combination) != vec.end()) {
-                wordsFound++;
-                std::cout << combination << std::endl;
-            }
-            for (int k = 0; k < 12; k++) {
-                combination = letters[i] + letters[j] + letters[k];
+            if (letters[i] != letters[j]) {
+                combination = letters[i] + letters[j];
                 if (std::find(vec.begin(), vec.end(), combination) != vec.end()) {
                     wordsFound++;
                     std::cout << combination << std::endl;
+                }
+            }
+
+            for (int k = 0; k < 12; k++) {
+                if (letters[i] != letters[j] && letters[i] != letters[k] && letters[j] != letters[k]) {
+                    combination = letters[i] + letters[j] + letters[k];
+                    if (std::find(vec.begin(), vec.end(), combination) != vec.end()) {
+                        wordsFound++;
+                        std::cout << combination << std::endl;
+                    }
                 }
             }
         }
