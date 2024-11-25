@@ -2,6 +2,7 @@
 #include <fstream>
 #include <vector>
 #include <algorithm>
+#include <chrono> 
 
 void bruteForceSearch(std::string *letters, std::vector<std::string> vec) {
     std::string combination;
@@ -31,7 +32,7 @@ void bruteForceSearch(std::string *letters, std::vector<std::string> vec) {
 }
 
 int main() {
-    
+
     const int arrSize = 12;
     std::string letters[arrSize];
     std::vector<std::string> dictionaryWords = {};
@@ -56,6 +57,17 @@ int main() {
     std::cout << "\nSuccesfully initialized data\n\n";
 
     inputFile.close(); // Close the file after reading
+
+    // Record start time
+    auto start = std::chrono::high_resolution_clock::now();
     
     bruteForceSearch(letters, dictionaryWords);
+
+    // Record end time
+    auto end = std::chrono::high_resolution_clock::now();
+
+    // Calculate duration
+    std::chrono::duration<double> duration = end - start;
+
+    std::cout << "Task complete in " << duration.count() << " seconds" << std::endl;
 }
